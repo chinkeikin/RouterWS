@@ -20,7 +20,7 @@ RUN npm install --production
 COPY . .
 
 # 暴露端口
-EXPOSE 3000 8080
+EXPOSE 3000 9999
 
 # 创建非root用户
 RUN useradd -m -s /bin/bash appuser && \

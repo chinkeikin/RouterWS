@@ -46,7 +46,7 @@
     "formatted": "0天 2小时 0分钟 0秒"
   },
   "websocket": {
-    "port": 8080,
+    "port": 9999,
     "connected_clients": 2
   },
   "http": {
@@ -59,7 +59,7 @@
 
 ### WebSocket接口
 
-- **连接地址**: `ws://localhost:8080`
+- **连接地址**: `ws://localhost:9999`
 - **功能**: 接收从HTTP API转发的消息
 - **消息格式**:
 ```json
@@ -89,7 +89,7 @@ docker build -t websocket-router .
 
 2. 运行容器：
 ```bash
-docker run -d -p 3000:3000 -p 8080:8080 --name websocket-router websocket-router
+docker run -d -p 3000:3000 -p 9999:9999 --name websocket-router websocket-router
 ```
 
 ### 本地开发
@@ -112,12 +112,12 @@ npm run dev
 ## 端口配置
 
 - **HTTP服务**: 3000端口（可通过环境变量PORT修改）
-- **WebSocket服务**: 8080端口（可通过环境变量WS_PORT修改）
+- **WebSocket服务**: 9999端口（可通过环境变量WS_PORT修改）
 
 ## 环境变量
 
 - `PORT`: HTTP服务端口（默认: 3000）
-- `WS_PORT`: WebSocket服务端口（默认: 8080）
+- `WS_PORT`: WebSocket服务端口（默认: 9999）
 - `NODE_ENV`: 运行环境（默认: production）
 
 ## 测试示例
@@ -136,7 +136,7 @@ curl http://localhost:3000/api/status
 
 ### WebSocket客户端测试
 ```javascript
-const ws = new WebSocket('ws://localhost:8080');
+const ws = new WebSocket('ws://localhost:9999');
 
 ws.onopen = function() {
     console.log('WebSocket连接已建立');
