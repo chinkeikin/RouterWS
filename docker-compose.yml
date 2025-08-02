@@ -1,0 +1,28 @@
+version: '3.8'
+
+services:
+  websocket-router:
+    build: .
+    container_name: websocket-http-router
+    ports:
+      - "3000:3000"   # HTTP服务端口
+      - "8080:8080"   # WebSocket服务端口
+    environment:
+      - NODE_ENV=production
+      - PORT=3000
+      - WS_PORT=8080
+    restart: unless-stopped
+    volumes:
+      - ./logs:/app/logs  # 日志目录挂载（可选）
+    networks:
+      - router-network
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:3000/api/status"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+      start_period: 40s
+
+networks:
+  router-network:
+    driver: bridge
